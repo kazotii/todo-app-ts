@@ -1,0 +1,360 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+}
+
+@font-face {
+  font-family: 'Josefin Sans';
+  src: url('./assets/fonts/JosefinSans-Regular.ttf') format('woff2');
+  font-weight: 400;
+  font-style: regular;
+}
+
+@font-face {
+  font-family: 'Josefin Sans';
+  src: url('./assets/fonts/JosefinSans-Bold.ttf') format('woff2');
+  font-weight: 700;
+  font-style: bold;
+}
+
+body{
+    background-image: url('./assets/images/background-image-todo-dark.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    gap: 20px;
+    color: #BDC0D7;
+    font-family: 'Josefin Sans';
+}
+
+body.light {
+  background-image: url('./assets/images/background-image-todo-light.webp'); 
+}
+
+button{
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Josefin Sans';
+}
+
+header{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+header.light .create-new-todo,
+header.light input::placeholder,
+main.light button.clear-completed,
+main.light,
+main.light button,
+li.light span{
+    color: #000000;
+    transition: 0.3s ease;
+}
+
+.light .li-todo-list,
+.light .create-new-todo,
+main.light{
+    background-color: #BDC0D7;
+}
+
+.header-h1{
+    width: 400px;
+    background-color: none;
+    color: #BDC0D7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+    letter-spacing: 10px;
+}
+
+.header-h1 button{
+    background-color: #BDC0D7;
+}
+
+.button-change-theme{
+    width: 100px;
+    height: 30px;
+    transition: 0.3s ease;
+}
+
+.dark .button-change-theme{
+    background-color: #25273C;
+    color: #BDC0D7;
+}
+
+p{
+    font-size: 0.9rem;
+}
+
+.create-new-todo{
+    width: 400px;
+    height: 50px;
+    background-color: #25273C;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    font-family: 'Josefin Sans';
+    font-size: 1rem;
+    border: none;
+    color:#BDC0D7;
+    padding-left: 13px;
+}
+
+input::placeholder{
+    color: #BDC0D7;
+}
+
+input:focus{
+    outline: none;
+}
+
+.toggle-button{
+    width: 30px;
+    height: 30px;
+}
+
+main{
+    width: 400px;
+    background-color: #25273C;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    border-radius: 10px;
+}
+
+.todo-list{
+    max-height: 260px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.todo-list::-webkit-scrollbar{
+    width: 10px;
+}
+
+.todo-list::-webkit-scrollbar-track{
+    background: transparent;
+}
+
+.todo-list::-webkit-scrollbar-thumb{
+    background: #9A2279;
+    border-radius: 10px;
+}
+
+.light .todo-list::-webkit-scrollbar-thumb{
+    background-color: #3A7CFD;
+}
+
+.ul-todo-list{
+    margin-block-start: 0;
+    margin-block-end: 0;
+    padding-inline-start: 0;
+}
+
+.li-todo-list{
+    width: 400px;
+    height: 50px;
+    background-color: #25273C;
+    border-bottom: 0.1px outset #BDC0D7;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-family: 'Josefin Sans';
+    font-size: 1rem;
+}
+
+.li-todo-list:first-child{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.li-todo-list.hidden{
+    display: none;
+}
+
+.todo-condition{
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+}
+
+.todo-condition button{
+    background-color:  transparent;
+    color: #BDC0D7;
+    font-size: 0.9rem;
+}
+
+.todo-condition-buttons{
+    display: flex;
+    gap: 10px;
+}
+
+.todo-count{
+    display: flex;
+    align-items: center;
+}
+
+.li-todo-list input[type="checkbox"]{
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #BDC0D7;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.light.li-todo-list input[type="checkbox"]{
+    border-color: #000000;
+}
+
+.li-todo-list input[type="checkbox"]:checked{
+    position: relative;
+    background-color: #9A2279;
+    border-color: #9A2279;
+}
+
+.light.li-todo-list input[type="checkbox"]:checked{
+    border-color: #3A7CFD;
+    background: #3A7CFD;
+}
+
+.li-todo-list input[type="checkbox"]:checked::before{
+    display: inline-block;
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #BDC0D7;
+    font-size: 0.7rem;
+    font-weight: 900;
+}
+
+.light.li-todo-list input[type="checkbox"]:checked::before{
+    color: #000000;
+}
+
+.li-completed span{
+    text-decoration: line-through;
+    color: #BDC0D7;
+}
+
+span{
+    padding-left: 10px;
+}
+
+.delete-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+.delete-button span{
+    font-size: 1.1rem;
+    font-weight: 100;
+    font-family: sans-serif;
+    color: #BDC0D7;
+    text-decoration: none;
+}
+
+.delete-button span:hover{
+    color: #9A2279;
+}
+
+.light.delete-button span:hover{
+    color: #3A7CFD;
+}
+
+.todo-condition-buttons .active-button{
+    color: #9A2279;
+}
+
+body.light .todo-condition-buttons .active-button {
+    color: #3A7CFD;
+}
+
+.todo-list-count{
+    margin-left: 15px;
+}
+
+.clear-completed{
+    margin-right: 15px;
+}
+
+@media (max-width: 500px) {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.header-h1 button{
+    margin-right: 40px;
+}
+
+.create-new-todo{
+    width: 340px;
+}
+
+.starter-task{
+    margin-left: 20px;
+}
+
+main{
+    width: 340px;
+    margin-right: 20px;
+}
+
+.li-todo-list{
+    width: 340px;
+}
+
+h1{
+    padding-left: 25px;
+}
+
+.todo-condition-buttons{
+    display: flex;
+    gap: 5px;
+}
+
+.todo-list-count{
+    margin-left: 5px;
+}
+
+.clear-completed{
+    margin-right: 5px;
+}
+
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
+}
+}
