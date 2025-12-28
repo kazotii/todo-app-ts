@@ -1,5 +1,5 @@
-import type { FilterButtonProps } from "./types";
-import { useTheme } from "./ThemeContext";
+import type { FilterButtonProps } from "../functions/types";
+import { useTheme } from "../functions/useTheme";
 
 function FilterButton({
   text,

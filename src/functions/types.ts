@@ -6,6 +6,11 @@ export interface Item {
   completed: boolean;
 }
 
+export interface ThemeContextType {
+  theme: "light" | "dark";
+  ToggleTheme: () => void;
+}
+
 export interface TodoItemProps {
   item: Item;
   deleteFunc: (id: number) => void;

@@ -1,12 +1,6 @@
-import { createContext, useContext, useEffect } from "react";
-import { useState } from "react";
+import {  useEffect, useState } from "react";
 import type { ReactNode } from "react";
-
-export interface ThemeContextType {
-  theme: "light" | "dark";
-  ToggleTheme: () => void;
-}
-export const ThemeContext = createContext<ThemeContextType | null>(null);
+import { ThemeContext } from "../functions/ThemeContext";
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<"light" | "dark">("dark");
@@ -28,8 +22,3 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   );
 }
 
-export function useTheme() {
-  const context = useContext(ThemeContext);
-  if (context == null) throw new Error();
-  return context;
-}

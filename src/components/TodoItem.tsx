@@ -1,5 +1,5 @@
-import type { TodoItemProps } from "./types";
-import { useTheme } from "./ThemeContext";
+import type { TodoItemProps } from "../functions/types";
+import { useTheme } from "../functions/useTheme";
 
 function TodoItem({ item, deleteFunc, toggleFunc }: TodoItemProps) {
   const { theme } = useTheme();

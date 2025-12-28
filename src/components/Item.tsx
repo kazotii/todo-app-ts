@@ -1,5 +1,5 @@
 import TodoItem from "./TodoItem";
-import type { ItemProps } from "./types";
+import type { ItemProps } from "../functions/types";
 
 function Item({tasks, deleteFunc, toggleFunc}: ItemProps){
   return (

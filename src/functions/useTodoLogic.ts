@@ -1,47 +1,22 @@
-import { useMemo, useReducer, useState } from "react";
+import { useMemo, useState } from "react";
 import { useEffect } from "react";
-import { useTheme } from "./ThemeContext";
-import { useInputFocus } from "./InputFocus";
-import { myReducer } from "./reducer";
+import { useTheme } from "./useTheme";
+import { useInputFocus } from "./useInputFocus";
 import type { Item } from "./types";
 import type { FilterStatus } from "./types";
 import React from "react";
 
-function useTodoLogic() {
+function useTodoLogic(todo:Item[], AddTodo:(text:string) => void) {
   const { theme, ToggleTheme } = useTheme();
   const { inputRef, focusInput } = useInputFocus();
   const [text, setText] = useState("");
   const [activeFilter, setFilter] = useState<FilterStatus>("all");
-  const [todo, dispatch] = useReducer(myReducer, [], () => {
-    const savedTodo = localStorage.getItem("todo");
-    if (savedTodo) {
-      return JSON.parse(savedTodo) as Item[];
-    }
-    return [];
-  });
 
   function SetNewTodo(e: React.FormEvent) {
     e.preventDefault();
-    const newTodo = { text: text, id: Date.now(), completed: false };
-    dispatch({ type: "ADD", payload: newTodo });
+    AddTodo(text)
     setText("");
     focusInput();
-  }
-
-  function DuplicateTodo(id: number) {
-    dispatch({ type: "DUPLICATE", payload: id });
-  }
-
-  function ToggleId(id: number) {
-    dispatch({ type: "TOGGLED", payload: id });
-  }
-
-  function DeleteId(id: number) {
-    dispatch({ type: "DELETED", payload: id });
-  }
-
-  function ClearCompleted() {
-    dispatch({ type: "CLEARED" });
   }
 
   const counter = useMemo(() => {
@@ -80,13 +55,9 @@ function useTodoLogic() {
   return {
     useEffect,
     handleTextChange,
-    DeleteId,
-    ToggleId,
     SetNewTodo,
-    DuplicateTodo,
     setFilter,
     setText,
-    ClearCompleted,
     ToggleTheme,
     useTheme,
     focusInput,
