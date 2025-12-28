@@ -6,9 +6,9 @@ function FilterButton({
   value,
   setFil,
   activeFilter,
-}: FilterButtonProps) {
-  const { theme } = useTheme();
-  return (
+}: FilterButtonProps){
+  const {theme} = useTheme();
+  return(
     <button
       className={`${theme} ${activeFilter === value ? "active-button" : ""}`}
       onClick={() => setFil(value)}

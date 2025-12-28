@@ -1,4 +1,4 @@
-import { useReducer, useState } from "react";
+import { useMemo, useReducer, useState } from "react";
 import { useEffect } from "react";
 import { useTheme } from "./ThemeContext";
 import { useInputFocus } from "./InputFocus";
@@ -14,7 +14,7 @@ function useTodoLogic() {
   const [activeFilter, setFilter] = useState<FilterStatus>("all");
   const [todo, dispatch] = useReducer(myReducer, [], () => {
     const savedTodo = localStorage.getItem("todo");
-    if(savedTodo){
+    if (savedTodo) {
       return JSON.parse(savedTodo) as Item[];
     }
     return [];
@@ -22,29 +22,48 @@ function useTodoLogic() {
 
   function SetNewTodo(e: React.FormEvent) {
     e.preventDefault();
-    const newTodo = {text: text, id: Date.now(), completed: false};
-    dispatch({type:'ADD', payload:newTodo})
+    const newTodo = { text: text, id: Date.now(), completed: false };
+    dispatch({ type: "ADD", payload: newTodo });
     setText("");
     focusInput();
   }
 
-  function DuplicateTodo(id: number){
-    dispatch({type:'DUPLICATE', payload:id})
+  function DuplicateTodo(id: number) {
+    dispatch({ type: "DUPLICATE", payload: id });
   }
 
-  const counter = todo.filter((task) => task.completed === false).length;
-  let filteredTodos = todo;
-  switch(activeFilter){
-    case "all":
-      filteredTodos = todo;
-      break;
-    case "active":
-      filteredTodos = todo.filter((task) => task.completed === false);
-      break;
-    case "completed":
-      filteredTodos = todo.filter((task) => task.completed === true);
-      break;
+  function ToggleId(id: number) {
+    dispatch({ type: "TOGGLED", payload: id });
   }
+
+  function DeleteId(id: number) {
+    dispatch({ type: "DELETED", payload: id });
+  }
+
+  function ClearCompleted() {
+    dispatch({ type: "CLEARED" });
+  }
+
+  const counter = useMemo(() => {
+    console.log("счетчик пошел");
+    return todo.filter((task) => task.completed === false).length;
+  }, [todo]);
+
+  const filteredTodos = useMemo(() => {
+    let resultTodo = todo;
+    switch (activeFilter) {
+      case "all":
+        resultTodo = todo;
+        break;
+      case "active":
+        resultTodo = todo.filter((task) => task.completed === false);
+        break;
+      case "completed":
+        resultTodo = todo.filter((task) => task.completed === true);
+        break;
+    }
+    return resultTodo;
+  }, [activeFilter, todo]);
 
   useEffect(() => {
     localStorage.setItem("todo", JSON.stringify(todo));
@@ -53,18 +72,6 @@ function useTodoLogic() {
   useEffect(() => {
     focusInput();
   }, [focusInput]);
-
-  function ToggleId(id: number) {
-    dispatch({type: 'TOGGLED', payload:id})
-  }
-
-  function DeleteId(id: number) {
-    dispatch({type: 'DELETED', payload:id})
-  }
-
-  function ClearCompleted() {
-    dispatch({type: 'CLEARED'})
-  }
 
   function handleTextChange(e: React.ChangeEvent<HTMLInputElement>) {
     setText(e.target.value);
