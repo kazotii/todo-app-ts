@@ -2,9 +2,13 @@ import type { TodoItemProps } from "./types";
 import { useTheme } from "./ThemeContext";
 
 function TodoItem({ item, deleteFunc, toggleFunc }: TodoItemProps) {
-  const {theme} = useTheme()
+  const { theme } = useTheme();
   return (
-    <li className={`${theme} li-todo-list ${item.completed ? "li-completed" : ""}`}>
+    <li
+      className={`${theme} li-todo-list ${
+        item.completed ? "li-completed" : ""
+      }`}
+    >
       <input
         type="checkbox"
         checked={item.completed}
