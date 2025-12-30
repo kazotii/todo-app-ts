@@ -12,7 +12,6 @@ type Action =
   | { type: "CLEARED" };
 
 export function myReducer(state: Task[], action: Action) {
-  console.log("ЭТО ОБЬЕКТ ACTION:", action);
   switch (action.type) {
     case "DELETED":
       return state.filter((task) => task.id !== action.payload);

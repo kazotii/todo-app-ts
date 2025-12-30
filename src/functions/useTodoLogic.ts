@@ -20,7 +20,6 @@ function useTodoLogic(todo:Item[], AddTodo:(text:string) => void) {
   }
 
   const counter = useMemo(() => {
-    console.log("счетчик пошел");
     return todo.filter((task) => task.completed === false).length;
   }, [todo]);
 
