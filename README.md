@@ -2,24 +2,27 @@ Todo App (TypeScript)
 A simple and functional task management application.
 
 Tech Stack
-Core: React, TypeScript, Vite
 
-State Management: React Hooks (useState, useEffect)
+  Core: React, TypeScript, Vite
 
-Storage: LocalStorage for data persistence
+  State Management: React Hooks (useState, useEffect)
 
-Styling: CSS
+  Storage: LocalStorage for data persistence
+
+  Styling: CSS
 
 Features
-CRUD Operations: Create, read, update, and delete tasks.
 
-Task Status: Toggle completion status for each item.
+  CRUD Operations: Create, read, update, and delete tasks.
 
-Persistence: Saves your tasks locally in the browser.
+  Task Status: Toggle completion status for each item.
 
-Type Safety: Fully typed components and functions using TypeScript.
+  Persistence: Saves your tasks locally in the browser.
+
+  Type Safety: Fully typed components and functions using TypeScript.
 
 Setup
-npm install
 
-npm run dev
+  npm install
+
+  npm run dev
