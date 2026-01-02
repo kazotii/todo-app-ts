@@ -1,5 +1,5 @@
 # Todo App (TypeScript)
-* A simple and functional task management application.
+ A simple and functional task management application.
 
 ## Tech Stack 
 * Core: React, TypeScript, Vite
