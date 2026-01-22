@@ -1,5 +1,5 @@
 <img width="1919" height="872" alt="image" src="https://github.com/user-attachments/assets/6e2a64e5-7806-4d6e-b484-de6db7c6c605" />
-https://kazotii.github.io/todo-app-ts/
+https://todo-app-ts-sand.vercel.app/
 
 ## Task Master (TypeScript)
 High-performance task management engine focused on clean architecture and optimized state flow.
